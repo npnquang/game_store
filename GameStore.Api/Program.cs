@@ -1,6 +1,9 @@
 using Gamestore.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 // this is to let the API accept and return enum values as readable string
