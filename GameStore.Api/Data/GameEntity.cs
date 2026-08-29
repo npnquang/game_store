@@ -1,14 +1,21 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Gamestore.Api.Data;
 
+[Table("game")]
 public class GameEntity
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; }
 
-    public string Genre { get; set; } = string.Empty;
+    public required Genre Genre { get; set; }
 
-    public decimal Price { get; set; }
+    public required decimal Price { get; set; }
 
-    public DateOnly ReleaseDate { get; set; }
+    public required long PublisherId { get; set; }
+
+    public DateOnly ReleaseDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+
+    public PublisherEntity Publisher { get; set; } = null!;
 }
