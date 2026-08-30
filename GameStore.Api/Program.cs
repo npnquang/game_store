@@ -10,10 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
+// Build connection string from environment variables
+var connectionString = $"Host={Environment.GetEnvironmentVariable("POSTGRES_HOST")};" +
+                       $"Port={Environment.GetEnvironmentVariable("POSTGRES_PORT")};" +
+                       $"Database={Environment.GetEnvironmentVariable("POSTGRES_DB")};" +
+                       $"Username={Environment.GetEnvironmentVariable("POSTGRES_USER")};" +
+                       $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")}";
+
 builder.Services.AddDbContext<GameStoreDbContext>(
     options => options
         .UseNpgsql(
-            builder.Configuration.GetConnectionString("GameStore"),
+            connectionString,
             npgsqlOptions =>
             {
                 npgsqlOptions.MapEnum<UserRole>("user_role");
