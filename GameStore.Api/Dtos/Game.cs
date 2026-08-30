@@ -1,9 +1,12 @@
+using Gamestore.Api.Data;
+
 namespace Gamestore.Api;
 
-public record class Game (
-    int Id,
+public record class Game(
+    long Id,
     string Name,
-    string Genre,
+    Genre Genre,
     decimal Price,
-    DateOnly ReleaseDate
+    DateOnly ReleaseDate,
+    long PublisherId
 );

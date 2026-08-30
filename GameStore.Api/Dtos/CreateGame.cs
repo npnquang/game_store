@@ -1,7 +1,8 @@
 namespace Gamestore.Api;
 
-public record class CreateGame (
+public record class CreateGame(
     string name,
-    string genre,
-    decimal price
+    Gamestore.Api.Data.Genre genre,
+    decimal price,
+    long publisherId
 );
